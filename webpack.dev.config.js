@@ -54,11 +54,7 @@ module.exports = {
           { loader: 'style-loader' },
 
           {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]-[local]',
-            },
+            loader: 'css-loader'
           },
 
           {

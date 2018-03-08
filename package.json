@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "server": "webpack && node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "extract-text-webpack-plugin": "^3.0.2",
     "http-proxy": "^1.16.2",
     "koa": "^2.5.0",
     "koa-router": "^7.4.0",
@@ -15,6 +17,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "sass": "^1.0.0-beta.5.3",
     "save-dev": "^2.0.0"
   },
   "devDependencies": {
@@ -34,12 +37,10 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
     "file-loader": "^1.1.6",
-    "less": "^3.0.0",
-    "less-loader": "^4.0.5",
     "node-sass": "^4.7.2",
     "postcss-loader": "^2.1.0",
     "react-hot-loader": "^4.0.0-beta.22",
-    "sass-loader": "^6.0.6",
+    "sass-loader": "^6.0.7",
     "style-loader": "^0.20.1",
     "url-loader": "^0.6.2",
     "webpack": "^3.11.0",

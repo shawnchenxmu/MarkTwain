@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import marked from 'marked'
 
+import './index.scss'
+
 export default class extends Component {
 	constructor(props) {
 		super(props)
@@ -27,11 +29,11 @@ export default class extends Component {
 
 	render () {
 		return (
-			<div>
-				<div>
+			<div className="editor">
+				<div className="editor-input">
 					<textarea ref="editor" name="content" onChange={this.onChange.bind(this)}></textarea>
 				</div>
-				<div ref="preview" dangerouslySetInnerHTML={{ __html: this.state.result }}></div>
+				<div className="editor-preview" ref="preview" dangerouslySetInnerHTML={{ __html: this.state.result }}></div>
 			</div>
 		)
 	}

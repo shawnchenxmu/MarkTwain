@@ -1,3 +1,4 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')
@@ -16,6 +17,8 @@ module.exports = {
 			debug: false
 		}),
 
+    new ExtractTextPlugin('[name].css'),
+
 		new webpack.optimize.UglifyJsPlugin({
 			beautify: false,
 			comments: false,
@@ -28,7 +31,11 @@ module.exports = {
 	],
 
 	resolve: {
-    alias: { _: path.resolve(__dirname, 'src') }
+    alias: { _: path.resolve(__dirname, 'src') },
+    modules: [
+      "node_modules"
+    ],
+    extensions: ['.js', 'jsx', '.css']
   },
 
 	module: {
@@ -51,31 +58,37 @@ module.exports = {
         }
      	},
 
-			{
-        test: /\.scss$/,
-        use: [
-          { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]-[local]'
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [
-                  autoprefixer
-                ]
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          use:[
+            {
+              loader: 'css-loader',
+              options:{
+                minimize: true //css压缩
               }
             }
-          },
-          {
-            loader: 'sass-loader'
-          }
-        ]
+          ],
+          fallback: 'style-loader'
+        })
+      },
+
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true
+              }
+            },
+            {
+              loader: 'sass-loader'
+            },
+          ],
+          fallback: 'style-loader'
+        })
       },
 
       {
